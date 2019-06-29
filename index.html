@@ -17,26 +17,6 @@
           material.needsUpdate = true;
         }
       });
-      AFRAME.registerComponent('audiohandler', {
-         init:function() {
-         let playing = false;
-         let audio = this.el.components.sound;
-          this.el.setAttribute("src", "https://cdn.glitch.com/68a5793f-c971-43fa-a486-0004fc80764e%2Fken_ishii_lc_circuit_light.mp3?1532091989263");
-
-        var btn = document.getElementById("btn");
-         btn.addEventListener('mousedown', () => {
-
-         if(!playing) {
-            audio.playSound();
-            btn.innerHTML = '<img id="volume" src="https://cdn.glitch.com/e91484c9-95a2-40b3-a5b6-acc2db87a4ef%2Fsound_on.png?1532242974343"/>';
-         } else {
-            audio.stopSound();
-            btn.innerHTML = '<img id="volume" src="https://cdn.glitch.com/e91484c9-95a2-40b3-a5b6-acc2db87a4ef%2Fwhite_off.png?1532242974704"/>';
-         }
-         playing = !playing;
-         });
-         }
-      })
       AFRAME.registerComponent('movehandler', {
         init: function() {
           this.el.addEventListener('mousedown', () => {
@@ -48,56 +28,46 @@
         window.location.href="https://ambiguous-vein-tokyo-station.glitch.me/"
       }
     </script>
-        
   </head>
   <body>
     <div id="btn">
       <img src="https://cdn.glitch.com/e91484c9-95a2-40b3-a5b6-acc2db87a4ef%2Fwhite_off.png?1532242974704"/>
     </div>
     <a-scene id="scene1" cursor="rayOrigin:mouse" fog="type: linear; color: #fff; near:1000; far:6000">
-      
       <a-assets>https://cdn.glitch.com/0d293ae3-91f0-498c-9dfb-d8f39627bcd7%2Fsegnet_sample.png?1531566210180
         <img id="transpImage" src="https://cdn.glitch.com/091d82cc-e7ff-446c-9cab-6d502030e780%2F01_result_masked_flipped.png?1531738859480">
         <img id="fixedImage" src="https://cdn.glitch.com/091d82cc-e7ff-446c-9cab-6d502030e780%2F01_flipped.jpg?1531738862761">
-        <img id="ceiling_image" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fceiling_shibuya.png?1532145213152"> 
+        <img id="ceiling_image" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fceiling_shibuya.png?1532145213152">
         <img id="indicator" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fcircle.png?1532151517730">
       </a-assets>
-      
       <a-box visible="false" width="50" height="50" position = "50  50 0" rotation="90 0 0" movehandler></a-box>
+
       <a-text position="-1 1.5 -3" value="One young woman help me to find the way.\n---September 30,2019@Adam" color="black" width="5" opacity="0.3"></a-text>
-      <a-image  id="buildings"  position="0 0 0" geometry="primitive: sphere; radius: 100" 
+
+      <a-image  id="buildings"  position="0 0 0" geometry="primitive: sphere; radius: 100"
                   material="color:#cff;
-                            shader: flat; 
+                            shader: flat;
                             src: #transpImage;
                             side: back"
-                  transparent="true" alpha-test="0.5"> 
+                  transparent="true" alpha-test="0.5">
       </a-image>
-      <a-entity id="buildings_with_sky"  position="0 0 0" geometry="primitive: sphere; radius: 4000" 
+      <a-entity id="buildings_with_sky"  position="0 0 0" geometry="primitive: sphere; radius: 4000"
                   material="color:#cff;
-                            shader: flat; 
+                            shader: flat;
                             src: #fixedImage;
-                            side: back"> 
+                            side: back">
       </a-entity>
-      
-<!--       <a-sound  audiohandler id="destinationIndicator" volume="500" autoplay="false"
-                geometry="primitive: plane"
-                position="0 300 -500"
-                rotation="90 0 0"
-                material="color: #0ff; src: #indicator" transparent="true" alpha-test="0.5">
-                <a-animation attribute="geometry.height" from="2000" to="0" dur="5000" repeat="indefinite" easing="ease-out"></a-animation>
-                <a-animation attribute="geometry.width" from="2000" to="0" dur="5000" repeat="indefinite" easing="ease-out"></a-animation>
-      </a-sound> -->
       <a-image position = "0 1000 -1" width="6000" height="6000" src="#ceiling_image" opacity="0.5" rotation="90 0 0" color= "#0ff"></a-image>
-     
+
 <!--     <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden"> -->
 <!--       <div id="htmlElement" style="background: #F8F8F8; color: #333; font-size: 16em">SUMMER🌻BLUE🤙🌴🐬🐟🐠🐳🌊</div> -->
 <!--     </div> -->
 <!--   </a-scene> -->
 <!--     adding -->
       <div id="FadeLayer">
-        
+
       </div>
-      
+
     <script>
        var farest = 1000;
        var ceiling_height = 1000;
@@ -115,8 +85,8 @@
        + ' <a-animation attribute="geometry.width" from="2000" to="100" dur="4000" repeat="indefinite" easing="ease-out"></a-animation></a-sound>'
        + '<% _.each(results.tweets, function(item) { %>'
        + '<% var s = Math.floor(item.sentiment*0.99*15); %>'
-         // red   16 to 0 when   sentiment 0.0 to 0.5 
-         //       0       after  sentiment 0.5 
+         // red   16 to 0 when   sentiment 0.0 to 0.5
+         //       0       after  sentiment 0.5
        + '<% var reda   = Math.floor(15 - s*4); if(reda < 0)    { reda = 0; } %>'
        + '<% var redb   = Math.floor(s*2 - 15); if(redb < 0)    { redb = 0; } %>'
        + '<% var red    = Math.max(reda,redb); %>'
@@ -133,20 +103,20 @@
         + '<% console.log(s+":"+red16+green16+blue16); %>'
        + '<a-entity class="clickable" geometry="primitive:box; width:5; depth:5; height: 10"'
        + ' material="color: #<%= red16 %><%= green16 %><%= blue16 %>  ; shader:flat" '
-       + ' position="<%= (item.lat - 0.5)*2*farest  %>' 
-//       + '           <%= ceiling_height*0.5*(item.time)+400 %>' 
-       + '           <%= (item.time)*100+400 %>' 
+       + ' position="<%= (item.lat - 0.5)*2*farest  %>'
+//       + '           <%= ceiling_height*0.5*(item.time)+400 %>'
+       + '           <%= (item.time)*100+400 %>'
        + '           <%= (item.lng - 0.5)*2*farest %>">'
 //       + '  <a-animation attribute="material.opacity" from="0.5" to="0.1" dur="1000" direction="alternate" repeat="indefinite"'
 //       + '    delay="<%= ceiling_height*0.8*(item.time) + 20 %> "> </a-animation>'
        + '  <a-animation attribute="position" '
        + '    to="<%= (item.lat -0.5)*2*farest %> '
 //       + '        <%= ceiling_height*0.2*(item.time) + 450 %> '
-       + '           <%= (item.time)*300+200 %>' 
-       + '        <%= (item.lng -0.5)*2*farest %>" ' 
+       + '           <%= (item.time)*300+200 %>'
+       + '        <%= (item.lng -0.5)*2*farest %>" '
        + '    dur="<%= 1000*(item.time)+1000 %>"'
        + '    direction="alternate" repeat="indefinite"> </a-animation>'
-       + '  <a-animation attribute="geometry.height" from="0" to="<%= (1 - item.time)*300 %>" ' 
+       + '  <a-animation attribute="geometry.height" from="0" to="<%= (1 - item.time)*300 %>" '
        + '    dur="100"  direction="alternate" repeat="indefinite"> </a-animation>'
        + ' </a-entity> <% }); %>');
        var source = {
@@ -337,7 +307,8 @@
    //  }, 5*1000);
 
         // console.log(compiled(source));
-      
+
+
       </script>
      </a-scene>
   </body>
