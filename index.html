@@ -27,6 +27,9 @@
       function move(){
         window.location.href="https://ambiguous-vein-tokyo-station.glitch.me/"
       }
+      function blackout(){
+        $('#FadeLayer').animate({'opacity':0.8,'visibility':'visible'},4000);
+      }
     </script>
   </head>
   <body>
@@ -301,7 +304,7 @@
 };
         $("#scene1").append(compiled(source));
       /* adding */
-      $('#FadeLayer').animate({'opacity':0.8,'visibility':'visible'},4000);
+      
    //    setTimeout(function(){
    // window.location.href = '/b.html';
    //  }, 5*1000);
