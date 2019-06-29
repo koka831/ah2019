@@ -53,7 +53,7 @@
 .top-alert-popup{
   top:0vh;
 }
-#nonFadeText {
+.nonFadeText {
     color: white;
     position: absolute;
     top: 0;
@@ -68,19 +68,23 @@
     font-size: 25px;
     pointer-events: none;
 }
+.nonFadeText-small {
+    top: 7vh;
+    font-size: 15px;
+}
 #url-box {
     position: absolute;
-    top: 20vh;
+    top: 15vh;
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 27vw;
-    height: 7vh;
+    width: 32vw;
+    height: 6vh;
 }
 #url-box-input {
     font-size: 15px;
-    width: 23vw;
-    height: 7vh;
+    width: 31vw;
+    height: 6vh;
     top: 0;
     background-color: white;
     left: 0;
@@ -89,17 +93,35 @@
     padding-left: 1vw;
     border: 0;
     border-radius: 10pt;
-    opacity:0.0;
+    opacity: 0.0;
 }
 #url-box-icon {
     position: absolute;
     display: inline-block;
-    top: 1.2vh;
-    right: 3.5vw;
-    width: 1.5vw;
-    height: 1.5vw;
-    index: 2;
+    top: 1vh;
+    right: 1vw;
+    width: 4vh;
+    height: 4vh;
     z-index: 3;
     color: black;
-    opacity:0.0;
+    opacity: 0.0;
+}
+@media screen and (max-width:781px){
+  #fix-box{
+    top:36vh;
+  }
+  .nonFadeText{
+    width:90vw;
+  }
+  .nonFadeText-small{
+    top:13vh;
+  }
+  #url-box{
+    top:20vh;
+    width:80vw;
+  }
+  #url-box-input{
+    width:80vw;
+  }
+  
 }
