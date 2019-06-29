@@ -64,7 +64,7 @@
       </a-assets>
       
       <a-box visible="false" width="50" height="50" position = "50  50 0" rotation="90 0 0" movehandler></a-box>
-      
+      <a-text position="-1 1.5 -3" value="One young woman help me to find the way.\n---September 30,2019@Adam" color="black" width="5" opacity="0.3"></a-text>
       <a-image  id="buildings"  position="0 0 0" geometry="primitive: sphere; radius: 100" 
                   material="color:#cff;
                             shader: flat; 
@@ -93,7 +93,11 @@
 <!--       <div id="htmlElement" style="background: #F8F8F8; color: #333; font-size: 16em">SUMMER🌻BLUE🤙🌴🐬🐟🐠🐳🌊</div> -->
 <!--     </div> -->
 <!--   </a-scene> -->
-    
+<!--     adding -->
+      <div id="FadeLayer">
+        
+      </div>
+      
     <script>
        var farest = 1000;
        var ceiling_height = 1000;
@@ -326,6 +330,12 @@
   "status": 1
 };
         $("#scene1").append(compiled(source));
+      /* adding */
+      $('#FadeLayer').animate({'opacity':0.8,'visibility':'visible'},4000);
+   //    setTimeout(function(){
+   // window.location.href = '/b.html';
+   //  }, 5*1000);
+
         // console.log(compiled(source));
       
       </script>
