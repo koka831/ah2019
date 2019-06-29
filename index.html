@@ -136,20 +136,18 @@
         "results": {
           "destination": {
           "weightedLat": 0.5300902361522037,
-          "weightedLong": 0.5073077244695621,
-          "tweets":{
+          "weightedLong": 0.5073077244695621
+        },
+        "disaster": "false",
+        "tweets": [
+        {
             'from':'A',
             'to':'B',
             'amount':50,
             'message':"One young woman help me to find the way.\n---September 30,2019@Adam",
             "lat":35.671223,
             "low":139.766486
-          }
-       }
-        
-    },
-    "disaster": "false",
-    "tweet": [
+          },
       {
         "lat": 0.6830546479882167,
         "lng": 0.4448174675146743,
@@ -317,8 +315,8 @@
         "sentiment": 0.6000000014901161,
         "text": "SUMMER🌻BLUE🤙🌴🐬🐟🐠🐳🌊\n\n夏休みカラーにおススメよん‼️\n\n青人気だわー\n\n#夏\n#インナーカラー\n#blue\n#bluesky\n#水色\n#青\n#人気\n#カラーバター\n#エンシェールズ 場所: 美容室 VOLUME https://t.co/SxGcLf2DSb",
         "time": 0.013449074074074073
-      }
-    ],
+      }]
+    },   
     "status": 1
 };
         $("#scene1").append(compiled(source));
@@ -333,6 +331,7 @@
         });
       /* adding */
       setTimeout(blackout,10000);
+      
    //    setTimeout(function(){
    // window.location.href = '/b.html';
    //  }, 5*1000);
