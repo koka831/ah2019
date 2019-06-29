@@ -28,7 +28,13 @@
         window.location.href="https://ambiguous-vein-tokyo-station.glitch.me/"
       }
       function blackout(){
-        $('#FadeLayer').animate({'opacity':0.8,'visibility':'visible'},4000);
+        $('#FadeLayer').animate({'opacity':0.8,'visibility':'visible'},4000, false);
+        // $('#url-box').animate({'opacity':1.0},4000,false);
+        setTimeout(function(){
+          $('#url-box-input').animate({'opacity':1.0,'visibility':'visible'},2000,false);
+          $('#url-box-icon').animate({'opacity':1.0,'visibility':'visible'},2000,false);
+        },2000);
+        
       }
     </script>
   </head>
@@ -44,8 +50,6 @@
         <img id="indicator" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fcircle.png?1532151517730">
       </a-assets>
       <a-box visible="false" width="50" height="50" position = "50  50 0" rotation="90 0 0" movehandler></a-box>
-
-      <a-text position="-1 1.5 -3" value="One young woman help me to find the way.\n---September 30,2019@Adam" color="black" width="5" opacity="0.3"></a-text>
 
       <a-image  id="buildings"  position="0 0 0" geometry="primitive: sphere; radius: 100"
                   material="color:#cff;
@@ -70,6 +74,11 @@
       <div id="FadeLayer">
 
       </div>
+      <div class="top-alert">Copy a share link. Let's check it now!</div>
+      <div id="fix-box">
+        <p id="nonFadeText">One young woman help me to find the way <br>--September 30, 2019 @Adam</p>
+        <div id="url-box"><input id="url-box-input" value="http://aaaaa.com"><img id="url-box-icon" src="copy.png"></div>
+     </div>
 
     <script>
        var farest = 1000;
@@ -127,7 +136,7 @@
           "destination": {
           "weightedLat": 0.5300902361522037,
           "weightedLong": 0.5073077244695621,
-          "Tweets":{
+          "tweets":{
             'from':'A',
             'to':'B',
             'amount':50,
@@ -139,7 +148,7 @@
         
     },
     "disaster": "false",
-    "tweets": [
+    "tweet": [
       {
         "lat": 0.6830546479882167,
         "lng": 0.4448174675146743,
@@ -308,13 +317,21 @@
         "text": "SUMMER🌻BLUE🤙🌴🐬🐟🐠🐳🌊\n\n夏休みカラーにおススメよん‼️\n\n青人気だわー\n\n#夏\n#インナーカラー\n#blue\n#bluesky\n#水色\n#青\n#人気\n#カラーバター\n#エンシェールズ 場所: 美容室 VOLUME https://t.co/SxGcLf2DSb",
         "time": 0.013449074074074073
       }
-    ]
-  },
-  "status": 1
+    ],
+    "status": 1
 };
         $("#scene1").append(compiled(source));
+        $('#url-box-icon').on('click',function(){
+          var copyText = document.querySelector("#url-box-input");
+          copyText.select();
+          document.execCommand("copy");
+          $('.top-alert').animate({'top':0},800);
+          setTimeout(function(){
+            $('.top-alert').animate({'top':'-10vh'},400)
+          },4000)
+        });
       /* adding */
-      
+      setTimeout(blackout,10000);
    //    setTimeout(function(){
    // window.location.href = '/b.html';
    //  }, 5*1000);
