@@ -17,26 +17,6 @@
           material.needsUpdate = true;
         }
       });
-      AFRAME.registerComponent('audiohandler', {
-         init:function() {
-         let playing = false;
-         let audio = this.el.components.sound;
-          this.el.setAttribute("src", "https://cdn.glitch.com/68a5793f-c971-43fa-a486-0004fc80764e%2Fken_ishii_lc_circuit_light.mp3?1532091989263");
-
-        var btn = document.getElementById("btn");
-         btn.addEventListener('mousedown', () => {
-
-         if(!playing) {
-            audio.playSound();
-            btn.innerHTML = '<img id="volume" src="https://cdn.glitch.com/e91484c9-95a2-40b3-a5b6-acc2db87a4ef%2Fsound_on.png?1532242974343"/>';
-         } else {
-            audio.stopSound();
-            btn.innerHTML = '<img id="volume" src="https://cdn.glitch.com/e91484c9-95a2-40b3-a5b6-acc2db87a4ef%2Fwhite_off.png?1532242974704"/>';
-         }
-         playing = !playing;
-         });
-         }
-      })
       AFRAME.registerComponent('movehandler', {
         init: function() {
           this.el.addEventListener('mousedown', () => {
@@ -48,23 +28,19 @@
         window.location.href="https://ambiguous-vein-tokyo-station.glitch.me/"
       }
     </script>
-        
   </head>
   <body>
     <div id="btn">
       <img src="https://cdn.glitch.com/e91484c9-95a2-40b3-a5b6-acc2db87a4ef%2Fwhite_off.png?1532242974704"/>
     </div>
     <a-scene id="scene1" cursor="rayOrigin:mouse" fog="type: linear; color: #fff; near:1000; far:6000">
-      
       <a-assets>https://cdn.glitch.com/0d293ae3-91f0-498c-9dfb-d8f39627bcd7%2Fsegnet_sample.png?1531566210180
         <img id="transpImage" src="https://cdn.glitch.com/091d82cc-e7ff-446c-9cab-6d502030e780%2F01_result_masked_flipped.png?1531738859480">
         <img id="fixedImage" src="https://cdn.glitch.com/091d82cc-e7ff-446c-9cab-6d502030e780%2F01_flipped.jpg?1531738862761">
         <img id="ceiling_image" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fceiling_shibuya.png?1532145213152"> 
         <img id="indicator" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fcircle.png?1532151517730">
       </a-assets>
-      
       <a-box visible="false" width="50" height="50" position = "50  50 0" rotation="90 0 0" movehandler></a-box>
-      
       <a-image  id="buildings"  position="0 0 0" geometry="primitive: sphere; radius: 100" 
                   material="color:#cff;
                             shader: flat; 
@@ -78,22 +54,7 @@
                             src: #fixedImage;
                             side: back"> 
       </a-entity>
-      
-<!--       <a-sound  audiohandler id="destinationIndicator" volume="500" autoplay="false"
-                geometry="primitive: plane"
-                position="0 300 -500"
-                rotation="90 0 0"
-                material="color: #0ff; src: #indicator" transparent="true" alpha-test="0.5">
-                <a-animation attribute="geometry.height" from="2000" to="0" dur="5000" repeat="indefinite" easing="ease-out"></a-animation>
-                <a-animation attribute="geometry.width" from="2000" to="0" dur="5000" repeat="indefinite" easing="ease-out"></a-animation>
-      </a-sound> -->
       <a-image position = "0 1000 -1" width="6000" height="6000" src="#ceiling_image" opacity="0.5" rotation="90 0 0" color= "#0ff"></a-image>
-     
-<!--     <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden"> -->
-<!--       <div id="htmlElement" style="background: #F8F8F8; color: #333; font-size: 16em">SUMMER🌻BLUE🤙🌴🐬🐟🐠🐳🌊</div> -->
-<!--     </div> -->
-<!--   </a-scene> -->
-    
     <script>
        var farest = 1000;
        var ceiling_height = 1000;
@@ -326,10 +287,7 @@
   "status": 1
 };
         $("#scene1").append(compiled(source));
-        // console.log(compiled(source));
-      
       </script>
      </a-scene>
   </body>
 </html>
-<!--side: back;>
