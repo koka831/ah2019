@@ -8,6 +8,13 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+.close-button {
+    z-index: 100000000;
+    font-size: 20px;
+    color: white;
+    position: absolute;
+}
+
 #btn img{
   width:40px;
   height:40px;

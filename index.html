@@ -40,11 +40,22 @@
           $('#url-box-icon').animate({'opacity':1.0,'visibility':'visible'},2000,false);
         },2000);
       }
+function hideLayer() {
+        $('#FadeLayer').animate({'opacity':0,'visibility':'visible'},4000, false);
+        // $('#url-box').animate({'opacity':1.0},4000,false);
+        setTimeout(function(){
+          $('#url-box-input').animate({'opacity':0,'visibility':'visible'},2000,false);
+          $('#url-box-icon').animate({'opacity':0,'visibility':'visible'},2000,false);
+        },2000);
+}
     </script>
   </head>
   <body>
     <div id="btn">
       <img src="https://cdn.glitch.com/e91484c9-95a2-40b3-a5b6-acc2db87a4ef%2Fwhite_off.png?1532242974704"/>
+    </div>
+    <div class="close-button" onclick="hideLayer()">
+      x
     </div>
     <a-scene id="scene1" look-controls cursor="rayOrigin:mouse" fog="type: linear; color: #fff; near:1000; far:6000">
       <a-assets>https://cdn.glitch.com/0d293ae3-91f0-498c-9dfb-d8f39627bcd7%2Fsegnet_sample.png?1531566210180
