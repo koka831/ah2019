@@ -2,7 +2,15 @@
 <html>
   <head>
     <title>Sentiments in AR</title>
-    <meta name="description" content="Sentiments in AR">
+    <meta name="description" content="Find Goodwill nearby" />
+    <meta property="og:title" content="STANDY" />
+    <meta property="og:url" content="http://18.223.218.1/" />
+    <meta property="og:site_name" content="Find GoodWill nearby" />
+    <meta property="og:image" content="http://18.223.218.1/thumb.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="STANDY" />
+    <meta name="twitter:image" content="http://18.223.218.1/thumb.png" />
+    <meta name="twitter:description" content="Find Goodwill nearby" />
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js" type="text/javascript"></script>
@@ -24,9 +32,6 @@
           });
         }
       })
-      function move(){
-        window.location.href="https://ambiguous-vein-tokyo-station.glitch.me/"
-      }
       function blackout(){
         $('#FadeLayer').animate({'opacity':0.8,'visibility':'visible'},4000, false);
         // $('#url-box').animate({'opacity':1.0},4000,false);
@@ -34,7 +39,6 @@
           $('#url-box-input').animate({'opacity':1.0,'visibility':'visible'},2000,false);
           $('#url-box-icon').animate({'opacity':1.0,'visibility':'visible'},2000,false);
         },2000);
-        
       }
     </script>
   </head>
@@ -44,9 +48,15 @@
     </div>
     <a-scene id="scene1" cursor="rayOrigin:mouse" fog="type: linear; color: #fff; near:1000; far:6000">
       <a-assets>https://cdn.glitch.com/0d293ae3-91f0-498c-9dfb-d8f39627bcd7%2Fsegnet_sample.png?1531566210180
-        <img id="transpImage" src="https://cdn.glitch.com/091d82cc-e7ff-446c-9cab-6d502030e780%2F01_result_masked_flipped.png?1531738859480">
-        <img id="fixedImage" src="https://cdn.glitch.com/091d82cc-e7ff-446c-9cab-6d502030e780%2F01_flipped.jpg?1531738862761">
-        <img id="ceiling_image" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fceiling_shibuya.png?1532145213152">
+        <!-- Shibuya ver. -->
+        <!-- <img id="transpImage" src="https://cdn.glitch.com/091d82cc-e7ff-446c-9cab-6d502030e780%2F01_result_masked_flipped.png?1531738859480"> -->
+        <!-- <img id="fixedImage" src="https://cdn.glitch.com/091d82cc-e7ff-446c-9cab-6d502030e780%2F01_flipped.jpg?1531738862761"> -->
+        <!-- <img id="ceiling_image" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fceiling_shibuya.png?1532145213152"> -->
+        <!-- Tokyo St. ver. -->
+        <img id="transpImage" src="https://cdn.glitch.com/e360c859-f300-48b3-89de-bfddedcd003e%2F10_result_masked_flipped.png?1532228485101">
+        <img id="fixedImage" src="https://cdn.glitch.com/e360c859-f300-48b3-89de-bfddedcd003e%2F10_flipped.jpg?1532228478018">
+        <img id="ceiling_image" src="https://cdn.glitch.com/e360c859-f300-48b3-89de-bfddedcd003e%2Ftokyo_map.png?1532238320164">
+
         <img id="indicator" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fcircle.png?1532151517730">
       </a-assets>
       <a-box visible="false" width="50" height="50" position = "50  50 0" rotation="90 0 0" movehandler></a-box>
@@ -145,8 +155,11 @@
             'to':'B',
             'amount':50,
             'message':"One young woman help me to find the way.\n---September 30,2019@Adam",
+            "photo_url": "",
+            "sentiment": 0.8499999940395355,
+            "time": 0.00024305555555555552,
             "lat":35.671223,
-            "low":139.766486
+            "lng":139.766486
           },
       {
         "lat": 0.6830546479882167,
