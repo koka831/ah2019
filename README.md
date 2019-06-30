@@ -1,7 +1,7 @@
 # ah2019
 AngelHack 2019/STANDY
 
-Thanks to:
+Thanks to:  
 @natsumeS  
-@mywatch
+@mywatch  
 @koichi-okada
