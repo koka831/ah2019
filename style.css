@@ -113,6 +113,13 @@
     color: black;
     opacity: 0.0;
 }
+ul{
+  list-style: none;
+}
+ul.menu{
+  position:absolute;
+  top:;
+}
 @media screen and (max-width:781px){
   #fix-box{
     top:36vh;

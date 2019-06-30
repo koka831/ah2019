@@ -15,7 +15,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js" type="text/javascript"></script>
     <script src="https://unpkg.com/aframe-animation-component@%5E3.2.x/dist/aframe-animation-component.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <script>
       AFRAME.registerComponent('alpha-test', {
         dependencies: ['material'],
@@ -47,6 +47,15 @@ function hideLayer() {
           $('#url-box-input').animate({'opacity':0,'visibility':'visible'},2000,false);
           $('#url-box-icon').animate({'opacity':0,'visibility':'visible'},2000,false);
         },2000);
+        function turnleft(){
+          var camera = document.getElementById('camera');
+          var position = camera.getAttribute('position');
+          var rotation = camera.getAttribute('rotation');
+
+          // position.x += -Math.cos((rotation.y - 90) * Math.PI / 180) * speed;
+          position.z += Math.sin((rotation.y - 90) * Math.PI / 180) * speed;
+          camera.setAttribute('position', position);
+        }
 }
     </script>
   </head>
@@ -54,9 +63,13 @@ function hideLayer() {
     <div id="btn">
       <img src="https://cdn.glitch.com/e91484c9-95a2-40b3-a5b6-acc2db87a4ef%2Fwhite_off.png?1532242974704"/>
     </div>
-    <div class="close-button" onclick="hideLayer()">
+    <!-- <div class="close-button" onclick="hideLayer()">
       x
     </div>
+    <ul class="menu">
+      <li class="menuitem" onclick="turnleft()">left turn</li>
+      <li class="menuitem" onclick="turnright()">right turn</li>
+    </ul> -->
     <a-scene id="scene1" look-controls cursor="rayOrigin:mouse" fog="type: linear; color: #fff; near:1000; far:6000">
       <a-assets>https://cdn.glitch.com/0d293ae3-91f0-498c-9dfb-d8f39627bcd7%2Fsegnet_sample.png?1531566210180
         <!-- Shibuya ver. -->
@@ -97,9 +110,9 @@ function hideLayer() {
 <!--     </div> -->
 <!--   </a-scene> -->
 <!--     adding -->
-      <div id="FadeLayer">
+      <!-- <div id="FadeLayer"> -->
 
-      </div>
+      <!-- </div> -->
       <div class="top-alert">Copy a share link. Let's check it now!</div>
       <div id="fix-box">
         <p class="nonFadeText">One young woman help me to find the way.</p>
