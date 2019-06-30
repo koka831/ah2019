@@ -70,7 +70,7 @@ function hideLayer() {
 
         <!-- Harajuku St. ver. -->
         <img id="transpImage" src="https://cdn.glitch.com/cb9381c3-613e-4f2d-9e5e-a91e1a6fee5f%2F09_result_masked_flipped.png?1532227914907">
-        <!-- <img id="fixedImage" src="https://cdn.glitch.com/cb9381c3-613e-4f2d-9e5e-a91e1a6fee5f%2F09_flipped.jpg?1532227908540" > -->
+        <img id="fixedImage" src="https://cdn.glitch.com/cb9381c3-613e-4f2d-9e5e-a91e1a6fee5f%2F09_flipped.jpg?1532227908540" >
         <img id="ceiling_image" src="https://cdn.glitch.com/cb9381c3-613e-4f2d-9e5e-a91e1a6fee5f%2Fharajuku_map.png?1532236870893">
 
         <img id="indicator" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fcircle.png?1532151517730">
@@ -84,7 +84,7 @@ function hideLayer() {
                             side: back"
                   transparent="true" alpha-test="0.5">
       </a-image>
-      <a-entity camera look-controls id="buildings_with_sky"  position="0 0 0" geometry="primitive: sphere; radius: 4000"
+      <a-entity id="buildings_with_sky"  position="0 0 0" geometry="primitive: sphere; radius: 4000"
                   material="color:#cff;
                             shader: flat;
                             src: #fixedImage;
