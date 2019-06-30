@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sentiments in AR</title>
+    <meta name="description" content="Find Goodwill nearby" />
+    <meta property="og:title" content="STANDY" />
+    <meta property="og:url" content="http://18.223.218.1/" />
+    <meta property="og:site_name" content="Find GoodWill nearby" />
+    <meta property="og:image" content="http://18.223.218.1/thumb.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="STANDY" />
+    <meta name="twitter:image" content="http://18.223.218.1/thumb.png" />
+    <meta name="twitter:description" content="Find Goodwill nearby" />
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/aframe-animation-component@%5E3.2.x/dist/aframe-animation-component.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+      AFRAME.registerComponent('alpha-test', {
+        dependencies: ['material'],
+        init: function () {
+          var material = this.el.getObject3D('mesh').material;
+          material.alphaTest = 0.1;
+          material.needsUpdate = true;
+        }
+      });
+      AFRAME.registerComponent('movehandler', {
+        init: function() {
+          this.el.addEventListener('mousedown', () => {
+            blackout();
+          });
+        }
+      })
+      function blackout(){
+        $('#FadeLayer').animate({'opacity':0.8,'visibility':'visible'},4000, false);
+        // $('#url-box').animate({'opacity':1.0},4000,false);
+        setTimeout(function(){
+          $('#url-box-input').animate({'opacity':1.0,'visibility':'visible'},2000,false);
+          $('#url-box-icon').animate({'opacity':1.0,'visibility':'visible'},2000,false);
+        },2000);
+      }
+function hideLayer() {
+        $('#FadeLayer').animate({'opacity':0,'visibility':'visible'},4000, false);
+        // $('#url-box').animate({'opacity':1.0},4000,false);
+        setTimeout(function(){
+          $('#url-box-input').animate({'opacity':0,'visibility':'visible'},2000,false);
+          $('#url-box-icon').animate({'opacity':0,'visibility':'visible'},2000,false);
+        },2000);
+}
+    </script>
+  </head>
+  <body>
+    <div id="btn">
+      <img src="https://cdn.glitch.com/e91484c9-95a2-40b3-a5b6-acc2db87a4ef%2Fwhite_off.png?1532242974704"/>
+    </div>
+    <div class="close-button" onclick="hideLayer()">
+      x
+    </div>
+    <a-scene id="scene1" look-controls cursor="rayOrigin:mouse" fog="type: linear; color: #fff; near:1000; far:6000">
+      <a-assets>https://cdn.glitch.com/0d293ae3-91f0-498c-9dfb-d8f39627bcd7%2Fsegnet_sample.png?1531566210180
+        <!-- Shibuya ver. -->
+        <!-- <img id="transpImage" src="https://cdn.glitch.com/091d82cc-e7ff-446c-9cab-6d502030e780%2F01_result_masked_flipped.png?1531738859480"> -->
+        <!-- <img id="fixedImage" src="https://cdn.glitch.com/091d82cc-e7ff-446c-9cab-6d502030e780%2F01_flipped.jpg?1531738862761"> -->
+        <!-- <img id="ceiling_image" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fceiling_shibuya.png?1532145213152"> -->
+        <!-- Tokyo St. ver. -->
+        <img id="transpImage" src="https://cdn.glitch.com/e360c859-f300-48b3-89de-bfddedcd003e%2F10_result_masked_flipped.png?1532228485101">
+        <img id="fixedImage" src="https://cdn.glitch.com/e360c859-f300-48b3-89de-bfddedcd003e%2F10_flipped.jpg?1532228478018">
+        <img id="ceiling_image" src="https://cdn.glitch.com/e360c859-f300-48b3-89de-bfddedcd003e%2Ftokyo_map.png?1532238320164">
+
+        <!-- Harajuku St. ver. -->
+        <!-- <img id="transpImage" src="https://cdn.glitch.com/cb9381c3-613e-4f2d-9e5e-a91e1a6fee5f%2F09_result_masked_flipped.png?1532227914907"> -->
+        <!-- <img id="fixedImage" src="https://cdn.glitch.com/cb9381c3-613e-4f2d-9e5e-a91e1a6fee5f%2F09_flipped.jpg?1532227908540" > -->
+        <!-- <img id="ceiling_image" src="https://cdn.glitch.com/cb9381c3-613e-4f2d-9e5e-a91e1a6fee5f%2Fharajuku_map.png?1532236870893"> -->
+
+        <img id="indicator" src="https://cdn.glitch.com/f759ed10-9d93-4b12-b6d4-28896b595f5f%2Fcircle.png?1532151517730">
+      </a-assets>
+      <a-box visible="false" width="50" height="50" position = "50  50 0" rotation="90 0 0" movehandler></a-box>
+
+      <a-image  id="buildings"  position="0 0 0" geometry="primitive: sphere; radius: 100"
+                  material="color:#cff;
+                            shader: flat;
+                            src: #transpImage;
+                            side: back"
+                  transparent="true" alpha-test="0.5">
+      </a-image>
+      <a-entity camera look-controls id="buildings_with_sky"  position="0 0 0" geometry="primitive: sphere; radius: 4000"
+                  material="color:#cff;
+                            shader: flat;
+                            src: #fixedImage;
+                            side: back">
+      </a-entity>
+      <a-image position = "0 1000 -1" width="6000" height="6000" src="#ceiling_image" opacity="0.5" rotation="90 0 0" color= "#0ff"></a-image>
+
+<!--     <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden"> -->
+<!--       <div id="htmlElement" style="background: #F8F8F8; color: #333; font-size: 16em">SUMMER🌻BLUE🤙🌴🐬🐟🐠🐳🌊</div> -->
+<!--     </div> -->
+<!--   </a-scene> -->
+<!--     adding -->
+      <div id="FadeLayer">
+
+      </div>
+      <div class="top-alert">Copy a share link. Let's check it now!</div>
+      <div id="fix-box">
+        <p class="nonFadeText">One young woman help me to find the way.</p>
+        <p class="nonFadeText nonFadeText-small">--September 30, 2019 @Adam</p>
+        <div id="url-box"><input id="url-box-input" value="http://18.223.218.1/"><img id="url-box-icon" src="copy.png"></div>
+     </div>
+
+    <script>
+       var farest = 1000;
+       var ceiling_height = 1000;
+       var compiled = _.template(
+         ''
+       + '<% var x = (results.destination.weightedLong - 0.5)*1000 %>'
+       + '<% var y = 300 %>'
+       + '<% var z = (results.destination.weightedLat - 0.5)*1000 %>'
+       + '<a-sound audiohandler id="destinationIndicator"'
+       + ' volume="500" autoplay="false" geometry="primitive: plane"'
+       + ' position="<%= x %> <%= y %> <%= z %>"'
+       + ' rotation="90 0 0" material="color: #0ff; src: #indicator"'
+       + ' transparent="true" alpha-test="0.5">'
+       + ' <a-animation attribute="geometry.height" from="2000" to="100" dur="4000" repeat="indefinite" easing="ease-out"></a-animation>'
+       + ' <a-animation attribute="geometry.width" from="2000" to="100" dur="4000" repeat="indefinite" easing="ease-out"></a-animation></a-sound>'
+       + '<% _.each(results.tweets, function(item) { %>'
+       + '<% var s = Math.floor(item.sentiment*0.99*15); %>'
+         // red   16 to 0 when   sentiment 0.0 to 0.5
+         //       0       after  sentiment 0.5
+       + '<% var reda   = Math.floor(15 - s*4); if(reda < 0)    { reda = 0; } %>'
+       + '<% var redb   = Math.floor(s*2 - 15); if(redb < 0)    { redb = 0; } %>'
+       + '<% var red    = Math.max(reda,redb); %>'
+       + '<% var red16   = red.toString(16); %>'
+         // green 0 to 16 when   sentiment 0.0 to 0.5
+         //       16      after  sentiment 0.5
+       + '<% var green = Math.floor(s*2);      if(green > 15) { green = 15; } %>'
+       + '<% var green16   = green.toString(16); %>'
+         // blue  0       before sentiment 0.5
+         //       0 to 16 when   sentiment 0.5 to 1.0
+       + '<% var blue  = Math.floor(s);  if(blue < 0)   { blue = 0; } %>'
+       + '<% var blue16 = blue.toString(16); %>'
+       // + '<% console.log(red16);console.log(green16);console.log(blue16); %>'
+        + '<% console.log(s+":"+red16+green16+blue16); %>'
+       + '<a-entity class="clickable" geometry="primitive:box; width:5; depth:5; height: 10"'
+       + ' material="color: #<%= red16 %><%= green16 %><%= blue16 %>  ; shader:flat" '
+       + ' position="<%= (item.lat - 0.5)*2*farest  %>'
+//       + '           <%= ceiling_height*0.5*(item.time)+400 %>'
+       + '           <%= (item.time)*100+400 %>'
+       + '           <%= (item.lng - 0.5)*2*farest %>">'
+//       + '  <a-animation attribute="material.opacity" from="0.5" to="0.1" dur="1000" direction="alternate" repeat="indefinite"'
+//       + '    delay="<%= ceiling_height*0.8*(item.time) + 20 %> "> </a-animation>'
+       + '  <a-animation attribute="position" '
+       + '    to="<%= (item.lat -0.5)*2*farest %> '
+//       + '        <%= ceiling_height*0.2*(item.time) + 450 %> '
+       + '           <%= (item.time)*300+200 %>'
+       + '        <%= (item.lng -0.5)*2*farest %>" '
+       + '    dur="<%= 1000*(item.time)+1000 %>"'
+       + '    direction="alternate" repeat="indefinite"> </a-animation>'
+       + '  <a-animation attribute="geometry.height" from="0" to="<%= (1 - item.time)*300 %>" '
+       + '    dur="100"  direction="alternate" repeat="indefinite"> </a-animation>'
+       + ' </a-entity> <% }); %>');
+       var source = {
+        "results": {
+          "destination": {
+          "weightedLat": 0.5300902361522037,
+          "weightedLong": 0.5073077244695621
+        },
+        "disaster": "false",
+        "tweets": [
+        {
+            'from':'A',
+            'to':'B',
+            'amount':50,
+            'message':"One young woman help me to find the way.\n---September 30,2019@Adam",
+            "photo_url": "",
+            "sentiment": 0.8499999940395355,
+            "time": 0.00024305555555555552,
+            "lat":35.671223,
+            "lng":139.766486
+          },
+      {
+        "lat": 0.6830546479882167,
+        "lng": 0.4448174675146743,
+        "photo_url": "",
+        "sentiment": 0.8499999940395355,
+        "text": "I'm at ファミリーマート 渋谷公園通り店 - @famima_now in 渋谷区, 東京都 https://t.co/AuGFPIbAVC",
+        "time": 0.00024305555555555552
+      },
+      {
+        "lat": 0.5597461460352204,
+        "lng": 0.7673063574551564,
+        "photo_url": "",
+        "sentiment": 0.6500000059604645,
+        "text": "I'm at もうやんカレー 246 (渋谷店) in 渋谷区, 東京都 https://t.co/LmFx4p7ylG",
+        "time": 0.0018402777777777777
+      },
+      {
+        "lat": 0.46303658248448765,
+        "lng": 0.27887551228884766,
+        "photo_url": "",
+        "sentiment": 0.75,
+        "text": "I'm at TSUTAYA O-Crest - @o_group_and_duo in 渋谷区, 東京都 https://t.co/R03y2ZErFc",
+        "time": 0.0019097222222222222
+      },
+      {
+        "lat": 0.7527460682629197,
+        "lng": 0.39605759113150846,
+        "photo_url": "",
+        "sentiment": 0.7000000029802322,
+        "text": "．\nたまにはレディースもね🙆‍♀️\nhighlight×gradationで可愛い🤤🤤 場所: Shibuya, Tokyo https://t.co/VZ5HBtm0eT",
+        "time": 0.002835648148148148
+      },
+      {
+        "lat": 0.4815116195466857,
+        "lng": 0.5149268707458285,
+        "photo_url": "",
+        "sentiment": 0.800000011920929,
+        "text": "I'm at 渋谷駅 in 渋谷区, 東京都 https://t.co/7IQzbQmilD",
+        "time": 0.0035185185185185185
+      },
+      {
+        "lat": 0.63354121507754,
+        "lng": 0.5765903321309912,
+        "photo_url": "",
+        "sentiment": 0.949999988079071,
+        "text": "I'm at Glorious Chain Café in 渋谷区, 東京都 https://t.co/1yQz98YlUU",
+        "time": 0.0035763888888888894
+      },
+      {
+        "lat": 0.47697512677844617,
+        "lng": 0.5173897736552765,
+        "photo_url": "",
+        "sentiment": 0.8499999940395355,
+        "text": "神様のメモ帳 (@ 渋谷駅 in 渋谷区, 東京都) https://t.co/jzyUvJOcqE",
+        "time": 0.004513888888888889
+      },
+      {
+        "lat": 0.4653627803499757,
+        "lng": 0.5152683764438142,
+        "photo_url": "",
+        "sentiment": 0.800000011920929,
+        "text": "I'm at ハヤシフルーツ in 渋谷区, 東京都 https://t.co/oDkRsi9BWV",
+        "time": 0.0050347222222222225
+      },
+      {
+        "lat": 0.6188512533182311,
+        "lng": 0.42171930500889665,
+        "photo_url": "",
+        "sentiment": 0.6500000059604645,
+        "text": "修行の総仕上げや!! #ももちゃん修行中 (@ Shibuya WWW - @www_shibuya in 渋谷区, 東京都) https://t.co/c1ga3t17zU",
+        "time": 0.005624999999999999
+      },
+      {
+        "lat": 0.4680264548177047,
+        "lng": 0.5018629226170674,
+        "photo_url": "",
+        "sentiment": 0.8499999940395355,
+        "text": "I'm at 東急フードショー in 渋谷区, 東京都 https://t.co/K3Gtde8Nyl",
+        "time": 0.006631944444444445
+      },
+      {
+        "lat": 0.5900684465565097,
+        "lng": 0.45833314275730214,
+        "photo_url": "",
+        "sentiment": 0.75,
+        "text": "I'm at 渋谷ロフト in 渋谷区, 東京都 https://t.co/GXUmRSx1RZ",
+        "time": 0.00673611111111111
+      },
+      {
+        "lat": 0.5096250987085031,
+        "lng": 0.4731119264101177,
+        "photo_url": "",
+        "sentiment": 0.8499999940395355,
+        "text": "I'm at 渋谷駅 in 渋谷区, 東京都 https://t.co/JX8R2mZj7L",
+        "time": 0.008923611111111111
+      },
+      {
+        "lat": 0.47264918337324013,
+        "lng": 0.5078123122949909,
+        "photo_url": "",
+        "sentiment": 0.800000011920929,
+        "text": "I'm at 渋谷駅 in 渋谷区, 東京都 https://t.co/6bYVpbyFxL",
+        "time": 0.008969907407407407
+      },
+      {
+        "lat": 0.49053564381854203,
+        "lng": 0.5151522825759317,
+        "photo_url": "",
+        "sentiment": 0.7000000029802322,
+        "text": "I'm at 東急田園都市線 渋谷駅 in 渋谷区, 東京都 https://t.co/NCalOSYnB7",
+        "time": 0.009606481481481481
+      },
+      {
+        "lat": 0.4576928891134317,
+        "lng": 0.5464762782139129,
+        "photo_url": "",
+        "sentiment": 0.800000011920929,
+        "text": "I'm at 渋谷駅 in 渋谷区, 東京都 https://t.co/OgziNxJqbo",
+        "time": 0.009733796296296298
+      },
+      {
+        "lat": 0.4186561577093864,
+        "lng": 0.2426253733929939,
+        "photo_url": "",
+        "sentiment": 0.800000011920929,
+        "text": "🐼 (@ TSUTAYA O-Crest - @o_group_and_duo in 渋谷区, 東京都) https://t.co/il5fXrosIb",
+        "time": 0.009837962962962963
+      },
+      {
+        "lat": 0.4983355480361853,
+        "lng": 0.5454025482189203,
+        "photo_url": "",
+        "sentiment": 0.800000011920929,
+        "text": "I'm at 渋谷駅 in 渋谷区, 東京都 https://t.co/19nqvb2QD3",
+        "time": 0.009884259259259258
+      },
+      {
+        "lat": 0.29740284365317443,
+        "lng": 0.7527864928394083,
+        "photo_url": "",
+        "sentiment": 0.800000011920929,
+        "text": "マジビジョ もにか (@ ガバスゴカ in 渋谷区, 東京都) https://t.co/oQaGaEJJ1I",
+        "time": 0.010555555555555554
+      },
+      {
+        "lat": 0.48506270532586915,
+        "lng": 0.50899325570341,
+        "photo_url": "",
+        "sentiment": 0.800000011920929,
+        "text": "I'm at 渋谷駅 in 渋谷区, 東京都 https://t.co/4HR4qQ5YDM",
+        "time": 0.010972222222222223
+      },
+      {
+        "lat": 0.5403926690525361,
+        "lng": 0.4951665198825255,
+        "photo_url": "",
+        "sentiment": 0.800000011920929,
+        "text": "I'm at 天のや 西武渋谷店 in 渋谷区, 東京都 https://t.co/aBoNEPLyTn",
+        "time": 0.012997685185185183
+      },
+      {
+        "lat": 0.8803578138771773,
+        "lng": 0.7215486594710487,
+        "photo_url": "",
+        "sentiment": 0.6000000014901161,
+        "text": "SUMMER🌻BLUE🤙🌴🐬🐟🐠🐳🌊\n\n夏休みカラーにおススメよん‼️\n\n青人気だわー\n\n#夏\n#インナーカラー\n#blue\n#bluesky\n#水色\n#青\n#人気\n#カラーバター\n#エンシェールズ 場所: 美容室 VOLUME https://t.co/SxGcLf2DSb",
+        "time": 0.013449074074074073
+      }]
+    },   
+    "status": 1
+};
+        $("#scene1").append(compiled(source));
+        $('#url-box-icon').on('click',function(){
+          var copyText = document.querySelector("#url-box-input");
+          copyText.select();
+          document.execCommand("copy");
+          $('.top-alert').animate({'top':0},800);
+          setTimeout(function(){
+            $('.top-alert').animate({'top':'-10vh'},400)
+          },4000)
+        });
+      /* adding */
+      setTimeout(blackout,10000);
+   //    setTimeout(function(){
+   // window.location.href = '/b.html';
+   //  }, 5*1000);
+
+        // console.log(compiled(source));
+
+
+      </script>
+     </a-scene>
+  </body>
+</html>
+<!--side: back;>
